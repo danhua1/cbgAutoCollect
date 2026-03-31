@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                Int            @id @default(autoincrement())
+  name              String         @db.VarChar(100)
+  usernameEncrypted String         @db.Text
+  passwordEncrypted String         @db.Text
+  remark            String?        @db.VarChar(255)
+  isDefault         Boolean        @default(false)
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  logs              OperationLog[]
+
+  @@unique([name])
+}
+
+model OperationLog {
+  id         Int       @id @default(autoincrement())
+  action     String    @db.VarChar(60)
+  success    Boolean
+  accountId  Int?
+  targetUrl  String?   @db.Text
+  message    String?   @db.Text
+  detail     Json?
+  createdAt  DateTime  @default(now())
+  account    Account?  @relation(fields: [accountId], references: [id])
+
+  @@index([accountId, createdAt])
+  @@index([action, createdAt])
+}
