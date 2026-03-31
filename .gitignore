@@ -8,3 +8,4 @@ dist/
 .umi/
 .umi-production/
 *.tsbuildinfo
+server/logs/
