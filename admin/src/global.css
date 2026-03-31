@@ -1,0 +1,19 @@
+:root {
+  --page-bg: linear-gradient(180deg, #f4efe6 0%, #f8fbff 45%, #eef4ea 100%);
+  --card-bg: rgba(255, 255, 255, 0.82);
+  --card-shadow: 0 20px 60px rgba(38, 65, 89, 0.12);
+  --accent: #165dff;
+  --accent-soft: rgba(22, 93, 255, 0.12);
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  font-family: "Avenir Next", "PingFang SC", "Helvetica Neue", sans-serif;
+}
